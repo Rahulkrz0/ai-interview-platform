@@ -1,0 +1,282 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    @apply bg-transparent text-slate-900 transition-colors duration-300 font-sans antialiased;
+  }
+
+  body.dark {
+    @apply bg-transparent text-slate-100;
+  }
+}
+
+/* Custom Glassmorphism styles */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.dark .glass-panel {
+  background: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-card {
+  background: rgba(31, 41, 55, 0.45);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.8);
+}
+
+/* ==========================================================================
+   LIGHT MODE CONTRAST & ACCESSIBILITY OVERRIDES
+   ========================================================================== */
+
+/* Force clean, high-contrast dark text and background in light mode */
+body:not(.dark) {
+  color: #0f172a !important; /* slate-900 */
+  background-color: #f8fafc !important; /* slate-50 */
+}
+
+/* Headings and Titles */
+body:not(.dark) h1, 
+body:not(.dark) h2, 
+body:not(.dark) h3, 
+body:not(.dark) h4, 
+body:not(.dark) h5, 
+body:not(.dark) h6 {
+  color: #0f172a !important; /* slate-900 */
+}
+
+/* Force higher contrast for gray/slate text elements and override any dark text classes */
+body:not(.dark) [class*="dark:text-slate-100"],
+body:not(.dark) [class*="dark:text-slate-200"],
+body:not(.dark) [class*="dark:text-white"] {
+  color: #0f172a !important; /* slate-900 */
+}
+
+body:not(.dark) [class*="dark:text-slate-300"],
+body:not(.dark) [class*="dark:text-slate-400"],
+body:not(.dark) [class*="dark:text-slate-350"],
+body:not(.dark) [class*="dark:text-slate-450"],
+body:not(.dark) .text-slate-400,
+body:not(.dark) .text-gray-400,
+body:not(.dark) .text-zinc-400 {
+  color: #334155 !important; /* slate-700 */
+}
+
+body:not(.dark) .text-slate-500,
+body:not(.dark) .text-gray-500,
+body:not(.dark) .text-zinc-500,
+body:not(.dark) .text-slate-600,
+body:not(.dark) .text-gray-600,
+body:not(.dark) .text-zinc-600 {
+  color: #1e293b !important; /* slate-800 */
+}
+
+body:not(.dark) .text-slate-300,
+body:not(.dark) .text-gray-300,
+body:not(.dark) .text-zinc-300 {
+  color: #334155 !important; /* slate-700 */
+}
+
+/* Make cards and panels look premium, distinct, and highly legible in light mode */
+body:not(.dark) .glass-panel {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important; /* slate-300 */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+body:not(.dark) .glass-card {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important; /* slate-300 */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05) !important;
+}
+
+body:not(.dark) .glass-card:hover {
+  border-color: #94a3b8 !important; /* slate-400 */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Force standard dark borders for slate/gray border classes in light mode */
+body:not(.dark) [class*="border-slate-"],
+body:not(.dark) [class*="border-gray-"] {
+  border-color: #cbd5e1 !important; /* slate-300 */
+}
+
+/* Inputs, select dropdowns, textareas contrast in light mode */
+body:not(.dark) input,
+body:not(.dark) select,
+body:not(.dark) textarea {
+  background-color: #ffffff !important;
+  border: 1px solid #94a3b8 !important; /* slate-400 for strong input border contrast */
+  color: #0f172a !important; /* slate-900 text */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+body:not(.dark) input::placeholder,
+body:not(.dark) textarea::placeholder {
+  color: #475569 !important; /* slate-600 for clear placeholder visibility */
+  opacity: 1 !important;
+}
+
+/* Dropdown option tags styling */
+body:not(.dark) option,
+body:not(.dark) select option {
+  background-color: #ffffff !important;
+  color: #1e293b !important; /* slate-800 */
+}
+
+/* Filter labels, metadata, and general labels */
+body:not(.dark) label {
+  color: #334155 !important; /* slate-700 */
+  font-weight: 600 !important;
+}
+
+/* Buttons and interactive elements in light mode */
+body:not(.dark) button:not([class*="bg-indigo-500"]):not([class*="bg-purple-600"]):not([class*="bg-gradient"]) {
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important; /* slate-300 */
+  color: #1e293b !important; /* slate-800 */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+body:not(.dark) button:not([class*="bg-indigo-500"]):not([class*="bg-purple-600"]):not([class*="bg-gradient"]):hover {
+  background-color: #f1f5f9 !important; /* slate-100 */
+  border-color: #94a3b8 !important; /* slate-400 */
+  color: #0f172a !important; /* slate-900 */
+}
+
+/* Ensure solid primary buttons keep their white text and vibrant background in light mode */
+body:not(.dark) button[class*="bg-indigo-500"],
+body:not(.dark) button[class*="bg-purple-600"],
+body:not(.dark) button[class*="bg-gradient"] {
+  color: #ffffff !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Icons contrast in light mode */
+body:not(.dark) svg {
+  color: currentColor;
+}
+
+body:not(.dark) .text-slate-400 svg,
+body:not(.dark) .text-gray-400 svg,
+body:not(.dark) .text-zinc-400 svg {
+  color: #475569 !important; /* slate-600 */
+}
+
+/* Table header & body separators in light mode */
+body:not(.dark) thead tr {
+  border-bottom: 2px solid #94a3b8 !important; /* slate-400 */
+}
+
+body:not(.dark) tbody tr {
+  border-bottom: 1px solid #cbd5e1 !important; /* slate-300 */
+}
+
+/* Badge colors & Tag pills in light mode */
+body:not(.dark) .bg-slate-500\/10,
+body:not(.dark) .bg-slate-500\/15,
+body:not(.dark) .bg-slate-500\/5 {
+  background-color: #f1f5f9 !important; /* slate-100 */
+  border: 1px solid #cbd5e1 !important; /* slate-300 border for crisp definition */
+  color: #1e293b !important; /* slate-800 */
+}
+
+body:not(.dark) .bg-indigo-500\/10,
+body:not(.dark) .bg-indigo-500\/5,
+body:not(.dark) .bg-indigo-500\/15 {
+  background-color: #e0e7ff !important; /* indigo-100 */
+  border: 1px solid #a5b4fc !important; /* indigo-200 border */
+  color: #3730a3 !important; /* indigo-800 */
+}
+
+body:not(.dark) .bg-purple-500\/10,
+body:not(.dark) .bg-purple-500\/5,
+body:not(.dark) .bg-purple-500\/15 {
+  background-color: #f3e8ff !important; /* purple-100 */
+  border: 1px solid #d8b4fe !important; /* purple-200 border */
+  color: #6b21a8 !important; /* purple-800 */
+}
+
+body:not(.dark) .bg-emerald-500\/10,
+body:not(.dark) .bg-emerald-500\/5,
+body:not(.dark) .bg-emerald-500\/15 {
+  background-color: #d1fae5 !important; /* emerald-100 */
+  border: 1px solid #a7f3d0 !important; /* emerald-200 border */
+  color: #065f46 !important; /* emerald-800 */
+}
+
+body:not(.dark) .bg-amber-500\/10,
+body:not(.dark) .bg-amber-500\/5,
+body:not(.dark) .bg-amber-500\/15 {
+  background-color: #fef3c7 !important; /* amber-100 */
+  border: 1px solid #fde68a !important; /* amber-200 border */
+  color: #92400e !important; /* amber-800 */
+}
+
+body:not(.dark) .bg-red-500\/10,
+body:not(.dark) .bg-red-500\/5,
+body:not(.dark) .bg-red-500\/15,
+body:not(.dark) .bg-rose-500\/10,
+body:not(.dark) .bg-rose-500\/5,
+body:not(.dark) .bg-rose-500\/15 {
+  background-color: #fee2e2 !important; /* red-100 */
+  border: 1px solid #fecaca !important; /* red-200 border */
+  color: #991b1b !important; /* red-800 */
+}
+
+/* ==========================================================================
+   3D FLIP ANIMATION UTILITIES
+   ========================================================================== */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}

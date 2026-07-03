@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  database:
+    image: mongo:6.0
+    container_name: interview-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - platform-network
+
+  server:
+    build: ./server
+    container_name: interview-server
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://database:27017/ai-interview-prep
+      - JWT_ACCESS_SECRET=docker_compose_super_secret_access_key_12345
+      - JWT_REFRESH_SECRET=docker_compose_super_secret_refresh_key_12345
+      - GEMINI_API_KEY=MOCK_GEMINI_API_KEY
+    depends_on:
+      - database
+    networks:
+      - platform-network
+
+  client:
+    build: ./client
+    container_name: interview-client
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    networks:
+      - platform-network
+
+volumes:
+  mongo-data:
+
+networks:
+  platform-network:
+    driver: bridge
