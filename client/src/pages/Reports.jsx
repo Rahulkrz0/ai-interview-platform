@@ -116,7 +116,7 @@ const Reports = () => {
           <div className="flex justify-between items-center border-b border-slate-200/10 pb-2">
             <h3 className="font-bold text-sm">Attempt History</h3>
             <a
-              href={import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : "http://localhost:5000"}
+              href={import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : "https://ai-interview-platform-xxov.onrender.com"}
               className="text-[10px] text-indigo-500 hover:underline flex items-center space-x-1"
             >
               <Download className="h-3 w-3" />
@@ -170,7 +170,7 @@ const Reports = () => {
               </div>
 
               <a
-                href={`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/reports/download-pdf/${selectedReport._id}`}
+                href={`${import.meta.env.VITE_API_URL || 'https://ai-interview-platform-xxov.onrender.com/api'}/reports/download-pdf/${selectedReport._id}`}
                 className="flex items-center space-x-1.5 px-4 py-2 bg-indigo-500 text-white rounded-xl text-xs font-bold hover:bg-indigo-600 transition-colors"
               >
                 <Download className="h-4 w-4" />
