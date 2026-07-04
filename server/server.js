@@ -43,6 +43,15 @@ app.get('/health', (req, res) => {
   });
 });
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "AI Interview Platform Backend is Running 🚀",
+    health: "/health",
+    api: "/api"
+  });
+});
+
 // Register API Routes
 app.use('/api', generalLimiter, apiRoutes);
 
@@ -81,7 +90,7 @@ async function seedDatabase() {
       const part1 = require('./config/codingProblemsSeed');
       const part2 = require('./config/codingProblemsSeedPart2');
       const allProblems = [...part1, ...part2];
-      
+
       // Deduplicate before insert to prevent slug/problemNumber collisions
       const uniqueProblems = [];
       const seenSlugs = new Set();
@@ -95,7 +104,7 @@ async function seedDatabase() {
           console.warn(`Skipping duplicate in seed data: slug=${p.slug}, problemNumber=${p.problemNumber}`);
         }
       }
-      
+
       await CodingProblem.insertMany(uniqueProblems, { ordered: false });
       console.log(`Coding Problems Seeding completed successfully! Inserted ${uniqueProblems.length} problems.`);
     } else {
